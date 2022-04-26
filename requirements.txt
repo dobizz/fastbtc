@@ -1,0 +1,7 @@
+orjson
+aiohttp
+fastapi
+uvicorn[standard]
+jinja2
+pytest
+pytest-asyncio
