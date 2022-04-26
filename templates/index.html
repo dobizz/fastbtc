@@ -29,8 +29,8 @@
             </div>
           </nav>
         <br/>
-        <div class="container" style="width:40%" id="tableArea"></div>
-            <table class="table table-sm table-hover">
+        <div class="container" style="width:40%"></div>
+            <table class="table table-sm table-hover" id="tbl-peers">
                 <thead class="table-dark">
                     <tr>
                         <th>Peer</th>
@@ -60,9 +60,40 @@
             </table>
         </div>
         <script>
-            var ws = new WebSocket("ws://localhost:8000/ws/peerinfo");
+            let ws = new WebSocket("ws://localhost:8000/ws/peerinfo");
+            
             ws.onmessage = function(event) {
-                console.log(event.data);
+                let data = JSON.parse(event.data);
+                let table = document.getElementById('tbl-peers');
+                let new_tbody = document.createElement('tbody');
+                let old_tbody = table.getElementsByTagName('tbody')[0];
+
+                for (let index in data){
+                    let peer = data[index];
+                    let id = peer['id'];
+                    let addr = peer['addr'];
+                    let conn_type = peer['connection_type'];
+                    let network = peer['network'];
+                    let pingtime = parseInt(peer['pingtime'] * 1000) + " ms";
+                    let bytessent = parseInt(peer['bytessent'] / 1024) + " KB";
+                    let bytesrecv = parseInt(peer['bytesrecv'] / 1024) + " KB";
+                    let subver = peer['subver'];
+
+                    let info_list = [id, addr, conn_type, network, pingtime, bytessent, bytesrecv, subver]
+
+                    let new_row = document.createElement('tr');
+
+                    for (const info of info_list){
+                        let new_col = document.createElement('td');
+                        new_col.textContent = info;
+                        new_row.appendChild(new_col);
+                    }
+
+                    new_tbody.append(new_row);
+                } 
+
+                table.replaceChild(new_tbody, old_tbody);
+                console.log(data);
             };
         </script>
         
