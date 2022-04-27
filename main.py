@@ -76,6 +76,10 @@ async def getblockcount():
 async def getblockhash(block:int):
     return await rpc.getblockhash(block)
 
+@app.get("/rpc/getblockheader/{blockhash}")
+async def getblockheader(blockhash:str, verbose:bool=True):
+    return await rpc.getblockheader(blockhash, verbose)
+
 @app.get("/rpc/getblock/{blockhash}")
 async def getblock(blockhash:str, verbosity:int=1):
     return await rpc.getblock(blockhash, verbosity)

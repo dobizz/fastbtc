@@ -1,7 +1,7 @@
 import os
 import orjson
 import aiohttp
-from typing import List
+from typing import List, Union
 
 
 RPC_USER = os.getenv("BTC_RPC_USER")    # rpcuser from bitcoin.conf
@@ -83,6 +83,13 @@ class BitcoinRPC:
         '''Returns hash for specified block {0..N}'''
         method = "getblockhash"
         params = [block,]
+        return await self.call(method, params)
+
+    async def getblockheader(self, blockhash:str, verbose:bool=True) -> Union[dict, str]:
+        '''If verbose is false, returns a string that is serialized, hex-encoded data for blockheader 'hash'.
+        If verbose is true, returns an Object with information about blockheader <hash>.'''
+        method = "getblockheader"
+        params = [blockhash, verbose]
         return await self.call(method, params)
 
     async def getblock(self, blockhash:str, verbosity:int=1) -> dict:
