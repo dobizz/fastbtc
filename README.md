@@ -7,9 +7,9 @@
 - [x] getblockcount
 - [ ] getblockfilter "blockhash" ( "filtertype" )
 - [x] getblockhash height
-- [ ] getblockheader "blockhash" ( verbose )
+- [x] getblockheader "blockhash" ( verbose )
 - [x] getblockstats hash_or_height ( stats )
-- [ ] getchaintips
+- [x] getchaintips
 - [ ] getchaintxstats ( nblocks "blockhash" )
 - [x] getdifficulty
 - [x] getmempoolancestors "txid" ( verbose )

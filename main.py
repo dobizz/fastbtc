@@ -92,6 +92,10 @@ async def getblockstats(height:int, q:Optional[List[str]]=Query([])):
 async def getaddressinfo(address:str):
     return await rpc.getaddressinfo(address)
 
+@app.get("/rpc/getchaintips")
+async def getchaintips():
+    return await rpc.getchaintips()
+
 @app.get("/rpc/getrawtransaction/{txid}")
 async def getrawtransaction(txid:str, verbose:bool=False, blockhash:str=None):
     return await rpc.getrawtransaction(txid, verbose, blockhash)
