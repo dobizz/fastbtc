@@ -10,7 +10,7 @@
 - [x] getblockheader "blockhash" ( verbose )
 - [x] getblockstats hash_or_height ( stats )
 - [x] getchaintips
-- [ ] getchaintxstats ( nblocks "blockhash" )
+- [x] getchaintxstats ( nblocks "blockhash" )
 - [x] getdifficulty
 - [x] getmempoolancestors "txid" ( verbose )
 - [x] getmempooldescendants "txid" ( verbose )

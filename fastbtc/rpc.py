@@ -115,6 +115,12 @@ class BitcoinRPC:
         params = []
         return await self.call(method, params)
 
+    async def getchaintxstats(self, nblocks:int=1, blockhash:str=None) -> dict:
+        '''Return information about all known tips in the block tree, including the main chain as well as orphaned branches.'''
+        method = "getchaintxstats"
+        params = [nblocks, blockhash,]
+        return await self.call(method, params)
+
     async def getaddressinfo(self, address:str) -> dict:
         '''Returns information about the given address'''
         method = "getaddressinfo"

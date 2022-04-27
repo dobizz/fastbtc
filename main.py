@@ -96,6 +96,10 @@ async def getaddressinfo(address:str):
 async def getchaintips():
     return await rpc.getchaintips()
 
+@app.get("/rpc/getchaintxstats")
+async def getchaintxstats(nblocks:int=1, blockhash:str=None):
+    return await rpc.getchaintxstats(nblocks, blockhash)
+
 @app.get("/rpc/getrawtransaction/{txid}")
 async def getrawtransaction(txid:str, verbose:bool=False, blockhash:str=None):
     return await rpc.getrawtransaction(txid, verbose, blockhash)
