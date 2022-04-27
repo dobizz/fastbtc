@@ -103,10 +103,12 @@ class BitcoinRPC:
         params = [blockhash, verbosity,]
         return await self.call(method, params)
 
-    async def getblockstats(self, height:int, fields:List[str]=None) -> dict:
+    async def getblockstats(self, hash_or_height:Union[str, int], stats:List[str]=None) -> dict:
         '''Compute per block statistics for a given window. All amounts are in satoshis. It won't work for some heights with pruning.'''
+        if hash_or_height.isnumeric():
+            hash_or_height = int(hash_or_height)
         method = "getblockstats"
-        params = [height, fields,]
+        params = [hash_or_height, stats,]
         return await self.call(method, params)
 
     async def getchaintips(self) -> list:
@@ -145,6 +147,12 @@ class BitcoinRPC:
         '''Returns a hex-encoded proof that "txid" was included in a block.'''
         method = "gettxoutproof"
         params = [txids, blockhash,]
+        return await self.call(method, params)
+
+    async def verifychain(self, checklevel:int=3, nblocks:int=6) -> bool:
+        '''Verifies blockchain database.'''
+        method = "verifychain"
+        params = [checklevel, nblocks,]
         return await self.call(method, params)
 
     ######## UTILITIES ########

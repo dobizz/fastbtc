@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from websockets.exceptions import ConnectionClosedOK
-from typing import Optional, List
+from typing import Optional, List, Union
 from fastapi import FastAPI, Request, Query, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -84,9 +84,9 @@ async def getblockheader(blockhash:str, verbose:Optional[bool]=None):
 async def getblock(blockhash:str, verbosity:Optional[int]=None):
     return await rpc.getblock(blockhash, verbosity)
 
-@app.get("/rpc/getblockstats/{height}")
-async def getblockstats(height:int, q:Optional[List[str]]=Query([])):
-    return await rpc.getblockstats(height, q)
+@app.post("/rpc/getblockstats/{height}")
+async def getblockstats(hash_or_height:Union[str, int], stats:list=[]):
+    return await rpc.getblockstats(hash_or_height, stats)
 
 @app.get("/rpc/getaddressinfo/{address}")
 async def getaddressinfo(address:str):
@@ -109,9 +109,15 @@ async def gettxout(txid:str, n:int, include_mempool:Optional[bool]=None):
     return await rpc.gettxout(txid, n, include_mempool)
 
 @app.post("/rpc/gettxoutproof")
-async def gettxoutproof(txids:list, blockhash:Optional[str]=None):
-    print(type(txids), txids)
+async def gettxoutproof(txids:List[str], blockhash:Optional[str]=None):
     return await rpc.gettxoutproof(txids, blockhash)
+
+@app.get("/rpc/verifychain")
+async def verifychain(checklevel:Optional[int]=None, nblocks:Optional[int]=None):
+    if nblocks <= 0 or 100 < nblocks:
+        logging.warning("Operation will take a long time to complete, limiting result to the last 100 blocks instead.")
+        nblocks = 100
+    return await rpc.verifychain(checklevel, nblocks)
 
 @app.get("/rpc/getblockinfo/{height}")
 async def getblockinfo(height:int, verbosity:Optional[int]=None):

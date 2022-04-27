@@ -24,7 +24,7 @@
 - [ ] pruneblockchain height
 - [ ] savemempool
 - [ ] scantxoutset "action" ( - [scanobjects,...] )
-- [ ] verifychain ( checklevel nblocks )
+- [x] verifychain ( checklevel nblocks )
 - [ ] verifytxoutproof "proof"
 
 **== Control ==**
