@@ -50,6 +50,11 @@ class BitcoinRPC:
         method = "getconnectioncount"
         return await self.call(method)
 
+    async def getnetworkinfo(self) -> dict:
+        '''Returns an object containing various state info regarding P2P networking.'''
+        method = "getnetworkinfo"
+        return await self.call(method)
+
     async def getpeerinfo(self) -> list:
         '''Returns list of information about peer nodes'''
         method = "getpeerinfo"

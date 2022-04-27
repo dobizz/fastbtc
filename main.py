@@ -44,6 +44,10 @@ async def ws_peerinfo(websocket: WebSocket):
 async def connectioncount():
     return await rpc.getconnectioncount()
 
+@app.get("/rpc/getnetworkinfo")
+async def getnetworkinfo():
+    return await rpc.getnetworkinfo()
+
 @app.get("/rpc/getpeerinfo")
 async def getpeerinfo():
     return await rpc.getpeerinfo()
