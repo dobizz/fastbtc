@@ -53,6 +53,10 @@ async def connectioncount():
 async def getnetworkinfo():
     return await rpc.getnetworkinfo()
 
+@app.get("/rpc/getnettotals")
+async def getnettotals():
+    return await rpc.getnettotals()
+
 @app.get("/rpc/getpeerinfo")
 async def getpeerinfo():
     return await rpc.getpeerinfo()

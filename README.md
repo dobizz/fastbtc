@@ -54,7 +54,7 @@
 - [ ] disconnectnode ( "address" nodeid )
 - [x] getaddednodeinfo ( "node" )
 - [x] getconnectioncount
-- [ ] getnettotals
+- [x] getnettotals
 - [x] getnetworkinfo
 - [ ] getnodeaddresses ( count "network" )
 - [x] getpeerinfo
