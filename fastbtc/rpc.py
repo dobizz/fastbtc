@@ -67,8 +67,15 @@ class BitcoinRPC:
 
     ######## BLOCKCHAIN AND MINING ########
     async def getmininginfo(self) -> dict:
+        '''Returns a json object containing mining-related information.'''
         method = "getmininginfo"
         return await self.call(method)
+
+    async def getnetworkhashps(self, nblocks:int=120, height:int=-1) -> float:
+        '''Returns the estimated network hashes per second based on the last n blocks.'''
+        method = "getnetworkhashps"
+        params = [nblocks, height,]
+        return await self.call(method, params)
 
     async def getblockchaininfo(self) -> dict:
         method = "getblockchaininfo"

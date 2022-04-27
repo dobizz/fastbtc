@@ -43,7 +43,7 @@
 **== Mining ==**
 - [ ] getblocktemplate ( "template_request" )
 - [x] getmininginfo
-- [ ] getnetworkhashps ( nblocks height )
+- [x] getnetworkhashps ( nblocks height )
 - [ ] prioritisetransaction "txid" ( dummy ) fee_delta
 - [ ] submitblock "hexdata" ( "dummy" )
 - [ ] submitheader "hexdata"

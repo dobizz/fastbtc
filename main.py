@@ -52,6 +52,10 @@ async def getpeerinfo():
 async def getmininginfo():
     return await rpc.getmininginfo()
 
+@app.get("/rpc/getnetworkhashps")
+async def getnetworkhashps(nblocks:Optional[int]=None, height:Optional[int]=None):
+    return await rpc.getnetworkhashps(nblocks, height)
+
 @app.get("/rpc/getmemoryinfo")
 async def getmemoryinfo():
     return await rpc.getmemoryinfo()
