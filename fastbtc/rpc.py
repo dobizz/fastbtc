@@ -135,11 +135,16 @@ class BitcoinRPC:
             params.append(blockhash)
         return await self.call(method, params)
 
-
     async def gettxout(self, txid:str, n:int, include_mempool:bool=True):
         '''Returns details about an unspent transaction output (UTXO)'''
         method = "gettxout"
         params = [txid, n,]
+        return await self.call(method, params)
+
+    async def gettxoutproof(self, txids:List[str], blockhash:str=None):
+        '''Returns a hex-encoded proof that "txid" was included in a block.'''
+        method = "gettxoutproof"
+        params = [txids, blockhash,]
         return await self.call(method, params)
 
     ######## UTILITIES ########

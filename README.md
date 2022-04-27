@@ -18,7 +18,7 @@
 - [x] getmempoolinfo
 - [x] getrawmempool ( verbose mempool_sequence )
 - [x] gettxout "txid" n ( include_mempool )
-- [ ] gettxoutproof - ["txid",...] ( "blockhash" )
+- [x] gettxoutproof - ["txid",...] ( "blockhash" )
 - [ ] gettxoutsetinfo ( "hash_type" hash_or_height use_index )
 - [ ] preciousblock "blockhash"
 - [ ] pruneblockchain height

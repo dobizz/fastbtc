@@ -77,11 +77,11 @@ async def getblockhash(block:int):
     return await rpc.getblockhash(block)
 
 @app.get("/rpc/getblockheader/{blockhash}")
-async def getblockheader(blockhash:str, verbose:bool=True):
+async def getblockheader(blockhash:str, verbose:Optional[bool]=None):
     return await rpc.getblockheader(blockhash, verbose)
 
 @app.get("/rpc/getblock/{blockhash}")
-async def getblock(blockhash:str, verbosity:int=1):
+async def getblock(blockhash:str, verbosity:Optional[int]=None):
     return await rpc.getblock(blockhash, verbosity)
 
 @app.get("/rpc/getblockstats/{height}")
@@ -97,19 +97,24 @@ async def getchaintips():
     return await rpc.getchaintips()
 
 @app.get("/rpc/getchaintxstats")
-async def getchaintxstats(nblocks:int=1, blockhash:str=None):
+async def getchaintxstats(nblocks:int=1, blockhash:Optional[str]=None):
     return await rpc.getchaintxstats(nblocks, blockhash)
 
 @app.get("/rpc/getrawtransaction/{txid}")
-async def getrawtransaction(txid:str, verbose:bool=False, blockhash:str=None):
+async def getrawtransaction(txid:str, verbose:Optional[bool]=None, blockhash:Optional[str]=None):
     return await rpc.getrawtransaction(txid, verbose, blockhash)
 
 @app.get("/rpc/gettxout")
-async def gettxout(txid:str, n:int, include_mempool:bool=True):
+async def gettxout(txid:str, n:int, include_mempool:Optional[bool]=None):
     return await rpc.gettxout(txid, n, include_mempool)
 
+@app.post("/rpc/gettxoutproof")
+async def gettxoutproof(txids:list, blockhash:Optional[str]=None):
+    print(type(txids), txids)
+    return await rpc.gettxoutproof(txids, blockhash)
+
 @app.get("/rpc/getblockinfo/{height}")
-async def getblockinfo(height:int, verbosity:int=2):
+async def getblockinfo(height:int, verbosity:Optional[int]=None):
     return await rpc.getblockinfo(height, verbosity)
 
 @app.get("/rpc/validateaddress/{address}")
@@ -129,7 +134,7 @@ async def decodescript(hexstring:str):
     return await rpc.decodescript(hexstring)
 
 @app.get("/rpc/decoderawtransaction/{hexstring}")
-async def decoderawtransaction(hexstring:str, is_witness:bool=False):
+async def decoderawtransaction(hexstring:str, is_witness:Optional[bool]=None):
     return await rpc.decoderawtransaction(hexstring, is_witness)
 
 @app.get("/rpc/getmempoolinfo")
@@ -145,11 +150,11 @@ async def getmempoolentry(txid:str):
     return await rpc.getmempoolentry(txid)
 
 @app.get("/rpc/getmempoolancestors/{txid}")
-async def getmempoolancestors(txid:str, verbose:bool=False):
+async def getmempoolancestors(txid:str, verbose:Optional[bool]=None):
     return await rpc.getmempoolancestors(txid, verbose)
 
 @app.get("/rpc/getmempooldescendants/{txid}")
-async def getmempooldescendants(txid:str, verbose:bool=False):
+async def getmempooldescendants(txid:str, verbose:Optional[bool]=None):
     return await rpc.getmempooldescendants(txid, verbose)
 
 @app.get("/rpc/getsatoshis/{address}")
