@@ -112,6 +112,10 @@ async def gettxout(txid:str, n:int, include_mempool:Optional[bool]=None):
 async def gettxoutproof(txids:List[str], blockhash:Optional[str]=None):
     return await rpc.gettxoutproof(txids, blockhash)
 
+@app.get("/rpc/verifytxoutproof")
+async def verifytxoutproof(proof:str):
+    return await rpc.verifytxoutproof(proof)
+
 @app.get("/rpc/verifychain")
 async def verifychain(checklevel:Optional[int]=None, nblocks:Optional[int]=None):
     if nblocks <= 0 or 100 < nblocks:

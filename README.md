@@ -25,7 +25,7 @@
 - [ ] savemempool
 - [ ] scantxoutset "action" ( - [scanobjects,...] )
 - [x] verifychain ( checklevel nblocks )
-- [ ] verifytxoutproof "proof"
+- [x] verifytxoutproof "proof"
 
 **== Control ==**
 - [ ] getmemoryinfo ( "mode" )

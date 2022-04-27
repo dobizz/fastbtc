@@ -149,6 +149,13 @@ class BitcoinRPC:
         params = [txids, blockhash,]
         return await self.call(method, params)
 
+    async def verifytxoutproof(self, proof:str) -> List[str]:
+        '''Verifies that a proof points to a transaction in a block, returning the transaction
+        it commits to and throwing an RPC error if the block is not in our best chain'''
+        method = "verifytxoutproof"
+        params = [proof,]
+        return await self.call(method, params)
+
     async def verifychain(self, checklevel:int=3, nblocks:int=6) -> bool:
         '''Verifies blockchain database.'''
         method = "verifychain"
