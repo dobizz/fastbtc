@@ -40,6 +40,11 @@ async def ws_peerinfo(websocket: WebSocket):
         logging.debug("ws client disconnected")
 
 ######## API ENDPOINTS ########
+@app.get("/rpc/getaddednodeinfo/{node}")
+@app.post("/rpc/getaddednodeinfo")
+async def getaddednodeinfo(node:str):
+    return await rpc.getaddednodeinfo(node)
+
 @app.get("/rpc/connectioncount")
 async def connectioncount():
     return await rpc.getconnectioncount()
@@ -100,7 +105,7 @@ async def getblockheader(blockhash:str, verbose:Optional[bool]=None):
 async def getblock(blockhash:str, verbosity:Optional[int]=None):
     return await rpc.getblock(blockhash, verbosity)
 
-@app.post("/rpc/getblockstats/{height}")
+@app.post("/rpc/getblockstats")
 async def getblockstats(hash_or_height:Union[str, int], stats:list=[]):
     return await rpc.getblockstats(hash_or_height, stats)
 

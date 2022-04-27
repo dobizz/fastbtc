@@ -52,7 +52,7 @@
 - [ ] addnode "node" "command"
 - [ ] clearbanned
 - [ ] disconnectnode ( "address" nodeid )
-- [ ] getaddednodeinfo ( "node" )
+- [x] getaddednodeinfo ( "node" )
 - [x] getconnectioncount
 - [ ] getnettotals
 - [x] getnetworkinfo

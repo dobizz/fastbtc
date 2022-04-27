@@ -45,6 +45,12 @@ class BitcoinRPC:
         return reply['result'] if reply else reply
 
     ######## NODE AND NETWORK ########
+    async def getaddednodeinfo(self, node:str) -> dict:
+        '''Returns information about the given added node, or all added nodes (note that onetry addnodes are not listed here)'''
+        method = "getaddednodeinfo"
+        params = [node,]
+        return await self.call(method, params)
+
     async def getconnectioncount(self) -> int:
         '''Returns the number of connections to other nodes'''
         method = "getconnectioncount"
