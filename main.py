@@ -52,6 +52,14 @@ async def getpeerinfo():
 async def getmininginfo():
     return await rpc.getmininginfo()
 
+@app.get("/rpc/getmemoryinfo")
+async def getmemoryinfo():
+    return await rpc.getmemoryinfo()
+
+@app.get("/rpc/uptime")
+async def uptime():
+    return await rpc.uptime()
+
 @app.get("/rpc/getblockchaininfo")
 async def getblockchaininfo():
     return await rpc.getblockchaininfo()

@@ -55,6 +55,16 @@ class BitcoinRPC:
         method = "getpeerinfo"
         return await self.call(method)
 
+    async def getmemoryinfo(self) -> dict:
+        '''Returns general statistics about memory usage in the daemon.'''
+        method = "getmemoryinfo"
+        return await self.call(method)
+
+    async def uptime(self) -> int:
+        '''Returns the total number of seconds that the server has been running'''
+        method = "uptime"
+        return await self.call(method)
+
     ######## BLOCKCHAIN AND MINING ########
     async def getmininginfo(self) -> dict:
         method = "getmininginfo"

@@ -28,12 +28,12 @@
 - [x] verifytxoutproof "proof"
 
 **== Control ==**
-- [ ] getmemoryinfo ( "mode" )
+- [x] getmemoryinfo ( "mode" )
 - [ ] getrpcinfo
 - [ ] help ( "command" )
 - [ ] logging ( - ["include_category",...] - ["exclude_category",...] )
 - [ ] stop
-- [ ] uptime
+- [x] uptime
 
 **== Generating ==**
 - [ ] generateblock "output" - ["rawtx/txid",...]
