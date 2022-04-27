@@ -66,6 +66,12 @@ class BitcoinRPC:
         method = "getnettotals"
         return await self.call(method)
 
+    async def getnodeaddresses(self, count:int=1, network:str=None) -> List[dict]:
+        '''Return known addresses which can potentially be used to find new nodes in the network'''
+        method = "getnodeaddresses"
+        params = [count, network,]
+        return await self.call(method, params)
+
     async def getpeerinfo(self) -> list:
         '''Returns list of information about peer nodes'''
         method = "getpeerinfo"

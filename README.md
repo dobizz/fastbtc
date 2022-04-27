@@ -56,7 +56,7 @@
 - [x] getconnectioncount
 - [x] getnettotals
 - [x] getnetworkinfo
-- [ ] getnodeaddresses ( count "network" )
+- [x] getnodeaddresses ( count "network" )
 - [x] getpeerinfo
 - [ ] listbanned
 - [ ] ping

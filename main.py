@@ -57,6 +57,10 @@ async def getnetworkinfo():
 async def getnettotals():
     return await rpc.getnettotals()
 
+@app.get("/rpc/getnodeaddresses")
+async def getnodeaddresses(count:int=None, network:str=None):
+    return await rpc.getnodeaddresses(count, network)
+
 @app.get("/rpc/getpeerinfo")
 async def getpeerinfo():
     return await rpc.getpeerinfo()
