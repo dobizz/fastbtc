@@ -49,7 +49,7 @@
 - [ ] submitheader "hexdata"
 
 **== Network ==**
-- [ ] addnode "node" "command"
+- [x] addnode "node" "command"
 - [ ] clearbanned
 - [ ] disconnectnode ( "address" nodeid )
 - [x] getaddednodeinfo ( "node" )

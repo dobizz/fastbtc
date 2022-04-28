@@ -36,15 +36,21 @@ class BitcoinRPC:
             "params": params if params else [],
         }
         async with self.session.post(self.url, data=orjson.dumps(command)) as reply:
-            if reply.status == 200: return (await reply.json())
-        return {}
-
+            return (await reply.json())
+  
     async def call(self, method:str, params:list=None):
         '''Returns the result from the RPC server using the given method and params'''
         reply = await self.__rpc__(method, params)
-        return reply['result'] if reply else reply
+        return reply['result'] if reply['result'] else reply['error']
 
     ######## NODE AND NETWORK ########
+    async def addnode(self, node:str, command:str) -> Union[None, dict]:
+        '''Attempts to add or remove a node from the addnode list. Or try a connection to a node once.'''
+        method = "addnode"
+        assert command.lower() in ["add", "remove", "onetry"]
+        params = [node, command,]
+        return await self.call(method, params)
+
     async def getaddednodeinfo(self, node:str) -> dict:
         '''Returns information about the given added node, or all added nodes (note that onetry addnodes are not listed here)'''
         method = "getaddednodeinfo"

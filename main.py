@@ -40,6 +40,11 @@ async def ws_peerinfo(websocket: WebSocket):
         logging.debug("ws client disconnected")
 
 ######## API ENDPOINTS ########
+@app.get("/rpc/addnode")
+@app.post("/rpc/addnode")
+async def addnode(node:str, command:str="onetry"):
+    return await rpc.addnode(node, command)
+
 @app.get("/rpc/getaddednodeinfo/{node}")
 @app.post("/rpc/getaddednodeinfo")
 async def getaddednodeinfo(node:str):
