@@ -1,3 +1,29 @@
+## Installation
+```
+pip install -r requirements.txt
+```
+
+## Environmental Variables
+```
+BTC_RPC_USER
+BTC_RPC_PASS
+```
+
+## Configuration
+Change the ```RPC_HOST``` and ```RPC_PORT``` of your Bitcoin Node in [rpc.py](fastbtc/rpc.py)
+```
+RPC_USER = os.getenv("BTC_RPC_USER")    # rpcuser from bitcoin.conf
+RPC_PASS = os.getenv("BTC_RPC_PASS")    # rpcpassword from bitcoin.conf
+RPC_HOST = "127.0.0.1"                  # rpcbind from bitcoin.conf
+RPC_PORT = 8332                         # rpcport from bitcoin.conf
+```
+
+## Run
+Run uvicorn asgi web server on specified host and port
+```
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
 ## RPC Commands Coverage
 
 **== Blockchain ==**
