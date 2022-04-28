@@ -50,7 +50,7 @@
 
 **== Network ==**
 - [x] addnode "node" "command"
-- [ ] clearbanned
+- [x] clearbanned
 - [ ] disconnectnode ( "address" nodeid )
 - [x] getaddednodeinfo ( "node" )
 - [x] getconnectioncount
@@ -58,7 +58,7 @@
 - [x] getnetworkinfo
 - [x] getnodeaddresses ( count "network" )
 - [x] getpeerinfo
-- [ ] listbanned
+- [x] listbanned
 - [ ] ping
 - [ ] setban "subnet" "command" ( bantime absolute )
 - [ ] setnetworkactive state

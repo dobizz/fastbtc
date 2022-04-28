@@ -41,7 +41,7 @@ class BitcoinRPC:
     async def call(self, method:str, params:list=None):
         '''Returns the result from the RPC server using the given method and params'''
         reply = await self.__rpc__(method, params)
-        return reply['result'] if reply['result'] else reply['error']
+        return reply['error'] if reply['error'] else reply['result']
 
     ######## NODE AND NETWORK ########
     async def addnode(self, node:str, command:str) -> Union[None, dict]:
@@ -50,6 +50,16 @@ class BitcoinRPC:
         assert command.lower() in ["add", "remove", "onetry"]
         params = [node, command,]
         return await self.call(method, params)
+
+    async def clearbanned(self) -> None:
+        '''Clear all banned IPs.'''
+        method = "clearbanned"
+        return await self.call(method)
+
+    async def listbanned(self) -> list:
+        '''Returns all banned IPs.'''
+        method = "listbanned"
+        return await self.call(method)
 
     async def getaddednodeinfo(self, node:str) -> dict:
         '''Returns information about the given added node, or all added nodes (note that onetry addnodes are not listed here)'''

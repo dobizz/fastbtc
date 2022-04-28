@@ -45,6 +45,14 @@ async def ws_peerinfo(websocket: WebSocket):
 async def addnode(node:str, command:str="onetry"):
     return await rpc.addnode(node, command)
 
+@app.get("/rpc/clearbanned")
+async def clearbanned():
+    return await rpc.clearbanned()
+
+@app.get("/rpc/listbanned")
+async def listbanned():
+    return await rpc.listbanned()
+
 @app.get("/rpc/getaddednodeinfo/{node}")
 @app.post("/rpc/getaddednodeinfo")
 async def getaddednodeinfo(node:str):
